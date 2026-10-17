@@ -37,7 +37,12 @@ if (isPostgres) {
  */
 function toPgSql(sql) {
   let paramIdx = 1;
-  return sql.replace(/\?/g, () => `$${paramIdx++}`);
+  let converted = sql.replace(/\?/g, () => `$${paramIdx++}`);
+  // In PostgreSQL, ILIKE is case-insensitive like SQLite LIKE
+  converted = converted.replace(/\bLIKE\b/g, 'ILIKE');
+  // In PostgreSQL, INSERT OR IGNORE -> ON CONFLICT DO NOTHING
+  converted = converted.replace(/\bINSERT\s+OR\s+IGNORE\s+INTO\b/gi, 'INSERT INTO');
+  return converted;
 }
 
 const db = {
