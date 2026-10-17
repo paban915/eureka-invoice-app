@@ -1,0 +1,25 @@
+{
+  "name": "eureka-international-invoicing",
+  "version": "1.0.0",
+  "description": "EUREKA INTERNATIONAL - Professional Web-based Invoicing and Billing System with Dedicated Product Master",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "invoice",
+    "billing",
+    "product-master",
+    "gst",
+    "inventory"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "pg": "^8.23.1"
+  }
+}

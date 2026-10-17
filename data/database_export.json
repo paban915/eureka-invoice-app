@@ -1,0 +1,281 @@
+{
+  "settings": [
+    {
+      "key": "company_name",
+      "value": "EUREKA INTERNATIONAL"
+    },
+    {
+      "key": "company_tagline",
+      "value": "West Bengal"
+    },
+    {
+      "key": "company_logo",
+      "value": ""
+    },
+    {
+      "key": "company_address",
+      "value": "15/7 Ambika Mukherjee Road, Kolkata - 700056"
+    },
+    {
+      "key": "company_phone",
+      "value": "+91 98765 43210"
+    },
+    {
+      "key": "company_email",
+      "value": "billing@eurekainternational.com"
+    },
+    {
+      "key": "company_gstin",
+      "value": "19AAAAA0000A1Z5"
+    },
+    {
+      "key": "company_state",
+      "value": "West Bengal (19)"
+    },
+    {
+      "key": "invoice_prefix",
+      "value": "EUREKA/2026-27/"
+    },
+    {
+      "key": "next_invoice_seq",
+      "value": "1"
+    },
+    {
+      "key": "default_tax_rate",
+      "value": "18"
+    },
+    {
+      "key": "enable_stock_tracking",
+      "value": "true"
+    },
+    {
+      "key": "default_payment_terms",
+      "value": "Net 30 Days"
+    },
+    {
+      "key": "default_notes",
+      "value": "Thank you for your business. Please make payments via Bank Transfer or UPI."
+    },
+    {
+      "key": "default_terms",
+      "value": "1. Goods once sold will not be taken back.\n2. Interest @ 18% p.a. will be charged if payment is delayed beyond due date.\n3. Subject to local jurisdiction only."
+    },
+    {
+      "key": "company_extra_info",
+      "value": "Registration Date: 04/03/2020 | Constitution: Partnership | Taxpayer: Regular"
+    }
+  ],
+  "products": [
+    {
+      "id": 2,
+      "product_name": "SEA-MIN",
+      "product_code": "SM-1KG",
+      "packaging": "POUCH",
+      "pack_size": "1 KG",
+      "mrp": 200,
+      "selling_price": 200,
+      "unit": "KG",
+      "tax_rate": 18,
+      "hsn": "",
+      "description": "Essential marine minerals blend for pond fertility",
+      "current_stock": 250,
+      "opening_stock": 250,
+      "min_stock": 25,
+      "created_at": "2026-10-17 09:42:15",
+      "updated_at": "2026-10-17 09:42:15"
+    },
+    {
+      "id": 4,
+      "product_name": "NUTRAGEL",
+      "product_code": "NG-1LTR",
+      "packaging": "BOTTLE",
+      "pack_size": "1 LTR",
+      "mrp": 640,
+      "selling_price": 640,
+      "unit": "LTR",
+      "tax_rate": 18,
+      "hsn": "",
+      "description": "Premium binding gel with growth stimulants and gut enhancers",
+      "current_stock": 90,
+      "opening_stock": 90,
+      "min_stock": 10,
+      "created_at": "2026-10-17 09:42:15",
+      "updated_at": "2026-10-17 09:42:15"
+    },
+    {
+      "id": 9,
+      "product_name": "SEA-MIN ADVANCE",
+      "product_code": "SMA-1KG",
+      "packaging": "POUCH",
+      "pack_size": "1 KG",
+      "mrp": 760,
+      "selling_price": 760,
+      "unit": "KG",
+      "tax_rate": 0,
+      "hsn": "",
+      "description": "Advanced trace minerals and bio-nutrients for high density farming",
+      "current_stock": 180,
+      "opening_stock": 180,
+      "min_stock": 20,
+      "created_at": "2026-10-17 14:50:49",
+      "updated_at": "2026-10-17 14:50:49"
+    },
+    {
+      "id": 11,
+      "product_name": "Y-TREAT",
+      "product_code": "YT-1LTR",
+      "packaging": "BOTTLE",
+      "pack_size": "1 LTR",
+      "mrp": 3800,
+      "selling_price": 3800,
+      "unit": "LTR",
+      "tax_rate": 0,
+      "hsn": "",
+      "description": "Specialized biological treatment for pond bottom hygiene",
+      "current_stock": 60,
+      "opening_stock": 60,
+      "min_stock": 5,
+      "created_at": "2026-10-17 14:50:49",
+      "updated_at": "2026-10-17 14:50:49"
+    },
+    {
+      "id": 13,
+      "product_name": "AQUA-GUARD",
+      "product_code": "AG-500G",
+      "packaging": "POUCH",
+      "pack_size": "500GM",
+      "mrp": 1950,
+      "selling_price": 1950,
+      "unit": "KG",
+      "tax_rate": 0,
+      "hsn": "",
+      "description": "",
+      "current_stock": 100,
+      "opening_stock": 100,
+      "min_stock": 10,
+      "created_at": "2026-10-17 16:09:32",
+      "updated_at": "2026-10-17 16:09:32"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "customer_name": "Ramesh Naidu",
+      "company_name": "Coastal Blue Aquaculture Farms",
+      "phone": "+91 94401 23456",
+      "email": "ramesh.coastal@gmail.com",
+      "billing_address": "Survey 84, Coastal Creek Road, Bhimavaram, West Godavari, Andhra Pradesh - 534201",
+      "shipping_address": "Survey 84, Coastal Creek Road, Bhimavaram, West Godavari, Andhra Pradesh - 534201",
+      "gstin": "37ABCDE1234F1Z2",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "created_at": "2026-10-17 09:42:15",
+      "updated_at": "2026-10-17 09:42:15"
+    },
+    {
+      "id": 2,
+      "customer_name": "Venkatesh Rao",
+      "company_name": "Sri Krishna Shrimp Hatcheries",
+      "phone": "+91 98480 98765",
+      "email": "srikrishna.hatcheries@yahoo.com",
+      "billing_address": "Beach Road, Near Lighthouse, Kakinada, Andhra Pradesh - 533001",
+      "shipping_address": "Beach Road, Near Lighthouse, Kakinada, Andhra Pradesh - 533001",
+      "gstin": "37KLMNO5678P1Z8",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "created_at": "2026-10-17 09:42:15",
+      "updated_at": "2026-10-17 09:42:15"
+    },
+    {
+      "id": 4,
+      "customer_name": "Rajesh Kumar Sharma",
+      "company_name": "Bengal Engineering Works Pvt Ltd",
+      "phone": "9830123456",
+      "email": "procurement@bengalengg.com",
+      "billing_address": "Plot 42, Sector V, Salt Lake, Kolkata - 700091",
+      "shipping_address": "Plot 42, Sector V, Salt Lake, Kolkata - 700091",
+      "gstin": "19AABCB1234F1Z8",
+      "state": "West Bengal (Code: 19)",
+      "country": "India",
+      "created_at": "2026-10-17 10:57:44",
+      "updated_at": "2026-10-17 10:57:44"
+    }
+  ],
+  "invoices": [
+    {
+      "id": 1,
+      "invoice_number": "INV-0001",
+      "invoice_date": "2026-10-17",
+      "due_date": "2026-11-01",
+      "customer_id": 1,
+      "customer_data_snapshot": "{\"customer_name\":\"Ramesh Naidu\",\"company_name\":\"Coastal Blue Aquaculture Farms\",\"phone\":\"+91 94401 23456\",\"email\":\"ramesh.coastal@gmail.com\",\"billing_address\":\"Survey 84, Coastal Creek Road, Bhimavaram, West Godavari, Andhra Pradesh - 534201\",\"shipping_address\":\"Survey 84, Coastal Creek Road, Bhimavaram, West Godavari, Andhra Pradesh - 534201\",\"gstin\":\"37ABCDE1234F1Z2\",\"state\":\"Andhra Pradesh\",\"country\":\"India\"}",
+      "items_snapshot": "[{\"product_id\":3,\"product_name\":\"SEA-MIN ADVANCE\",\"product_code\":\"SMA-1KG\",\"packaging\":\"POUCH\",\"pack_size\":\"1 KG\",\"mrp\":760,\"selling_price\":760,\"rate\":760,\"quantity\":1,\"unit\":\"KG\",\"tax_rate\":18,\"discount_type\":\"percent\",\"discount_val\":0,\"hsn\":\"\",\"description\":\"Advanced trace minerals and bio-nutrients for high density farming\"}]",
+      "subtotal": 760,
+      "discount_type": "percent",
+      "discount_val": 0,
+      "total_discount": 0,
+      "taxable_subtotal": 760,
+      "tax_type": "intra",
+      "cgst_amount": 68.4,
+      "sgst_amount": 68.4,
+      "igst_amount": 0,
+      "total_tax": 136.8,
+      "additional_charges": 0,
+      "shipping_charges": 0,
+      "round_off": 0,
+      "grand_total": 896.8,
+      "amount_paid": 0,
+      "balance_due": 896.8,
+      "status": "Paid",
+      "payment_terms": "Due on Receipt",
+      "notes": "Thank you for your business. Please make payments via Bank Transfer or UPI.",
+      "terms": "1. Goods once sold will not be taken back.\n2. Interest @ 18% p.a. will be charged if payment is delayed beyond due date.\n3. Subject to local jurisdiction only.",
+      "created_at": "2026-10-17 10:07:45",
+      "updated_at": "2026-10-17 10:07:45",
+      "total_gst_val": "",
+      "total_gst_type": "percent",
+      "total_tax_val": "",
+      "total_tax_type": "percent",
+      "gst_amount": 0,
+      "tax_amount": 0
+    },
+    {
+      "id": 2,
+      "invoice_number": "INV-0002",
+      "invoice_date": "2026-10-17",
+      "due_date": "2026-11-01",
+      "customer_id": 3,
+      "customer_data_snapshot": "{\"customer_name\":\"Mahesh Patel\",\"company_name\":\"Gujarat Aqua Agri Tech\",\"phone\":\"+91 98250 11223\",\"email\":\"mpatel@gujagritech.com\",\"billing_address\":\"Plot 12, GIDC Industrial Estate, Surat, Gujarat - 395003\",\"shipping_address\":\"Plot 12, GIDC Industrial Estate, Surat, Gujarat - 395003\",\"gstin\":\"24ABCDE9876K1Z1\",\"state\":\"Gujarat\",\"country\":\"India\"}",
+      "items_snapshot": "[{\"product_id\":3,\"product_name\":\"SEA-MIN ADVANCE\",\"product_code\":\"SMA-1KG\",\"packaging\":\"POUCH\",\"pack_size\":\"1 KG\",\"mrp\":760,\"selling_price\":760,\"rate\":760,\"quantity\":2,\"unit\":\"KG\",\"tax_rate\":18,\"discount_type\":\"percent\",\"discount_val\":0,\"hsn\":\"\",\"description\":\"Advanced trace minerals and bio-nutrients for high density farming\"}]",
+      "subtotal": 1520,
+      "discount_type": "percent",
+      "discount_val": 10,
+      "total_discount": 152,
+      "taxable_subtotal": 1368,
+      "tax_type": "inter",
+      "cgst_amount": 123.12,
+      "sgst_amount": 123.12,
+      "igst_amount": 246.24,
+      "total_tax": 246.24,
+      "additional_charges": 0,
+      "shipping_charges": 0,
+      "round_off": 0,
+      "grand_total": 1614.24,
+      "amount_paid": 0,
+      "balance_due": 1614.24,
+      "status": "Paid",
+      "payment_terms": "Due on Receipt",
+      "notes": "Thank you for your business. Please make payments via Bank Transfer or UPI.",
+      "terms": "1. Goods once sold will not be taken back.\n2. Interest @ 18% p.a. will be charged if payment is delayed beyond due date.\n3. Subject to local jurisdiction only.",
+      "created_at": "2026-10-17 10:40:24",
+      "updated_at": "2026-10-17 10:42:24",
+      "total_gst_val": "",
+      "total_gst_type": "percent",
+      "total_tax_val": "",
+      "total_tax_type": "percent",
+      "gst_amount": 0,
+      "tax_amount": 0
+    }
+  ],
+  "payments": []
+}
