@@ -113,7 +113,7 @@
                 <div class="grid-2" style="gap: 0.5rem; margin-top: 6px; text-align: left;">
                   <div>
                     <label class="form-label" style="font-size: 0.7rem; margin-bottom: 2px;">Invoice # <span class="req">*</span></label>
-                    <input type="text" id="invNumber" class="form-control font-mono" style="font-weight: 700; color: #1e40af; padding: 0.35rem 0.5rem;" placeholder="EUREKA/2026-27/0001" />
+                    <input type="text" id="invNumber" class="form-control font-mono" style="font-weight: 700; color: #1e40af; padding: 0.35rem 0.5rem;" placeholder="EI/26-27/001" />
                   </div>
                   <div>
                     <label class="form-label" style="font-size: 0.7rem; margin-bottom: 2px;">Date <span class="req">*</span></label>
@@ -347,45 +347,6 @@
                     <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; font-weight: 700; padding: 2px 4px; font-size: 0.75rem;" onclick="App.setTotalGstPreset(12)">12%</button>
                     <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; font-weight: 700; padding: 2px 4px; font-size: 0.75rem;" onclick="App.setTotalGstPreset(5)">5%</button>
                     <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; font-weight: 700; padding: 2px 4px; font-size: 0.75rem;" onclick="App.setTotalGstPreset(0)">0%</button>
-                  </div>
-                </div>
-
-                <!-- 2. TOTAL TAX BOX -->
-                <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 8px; padding: 10px 12px; margin-bottom: 0.85rem;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                    <label class="form-label" style="margin-bottom: 0; font-size: 0.82rem; color: #166534; font-weight: 800;">
-                      💰 TOTAL TAX (%)
-                    </label>
-                    <button type="button" class="btn btn-secondary btn-sm" style="color: #dc2626; padding: 1px 7px; font-size: 0.72rem;" onclick="App.clearTotalTax()">
-                      ✕ Clear / খালি
-                    </button>
-                  </div>
-
-                  <div style="display: flex; gap: 6px; align-items: center;">
-                    <div style="flex: 1; position: relative;">
-                      <input 
-                        type="text" 
-                        inputmode="decimal"
-                        id="invTotalTaxVal" 
-                        class="form-control font-mono" 
-                        style="font-weight: 800; color: #166534; font-size: 0.95rem; padding: 0.4rem 0.6rem; background: #ffffff; cursor: text;" 
-                        value="" 
-                        placeholder="Tax Rate % (e.g. 5)" 
-                        oninput="App.recalculateAndRenderSummary()" 
-                        onkeyup="App.recalculateAndRenderSummary()" 
-                      />
-                    </div>
-                    <select id="invTotalTaxType" class="form-control" style="width: 75px; font-weight: 800; color: #166534;" onchange="App.recalculateAndRenderSummary()">
-                      <option value="percent" selected>%</option>
-                      <option value="fixed">₹</option>
-                    </select>
-                  </div>
-
-                  <div style="display: flex; gap: 4px; margin-top: 6px;">
-                    <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; font-weight: 700; padding: 2px 4px; font-size: 0.75rem;" onclick="App.setTotalTaxPreset(18)">18%</button>
-                    <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; font-weight: 700; padding: 2px 4px; font-size: 0.75rem;" onclick="App.setTotalTaxPreset(12)">12%</button>
-                    <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; font-weight: 700; padding: 2px 4px; font-size: 0.75rem;" onclick="App.setTotalTaxPreset(5)">5%</button>
-                    <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; font-weight: 700; padding: 2px 4px; font-size: 0.75rem;" onclick="App.setTotalTaxPreset(0)">0%</button>
                   </div>
                 </div>
 
@@ -732,7 +693,7 @@
             </div>
             <div class="form-group">
               <label class="form-label">Invoice Number Prefix</label>
-              <input type="text" id="setInvoicePrefix" class="form-control font-mono" placeholder="INV-" />
+              <input type="text" id="setInvoicePrefix" class="form-control font-mono" placeholder="EI/26-27/" />
             </div>
           </div>
 

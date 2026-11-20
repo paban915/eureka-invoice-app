@@ -125,7 +125,7 @@ const App = {
   // INVOICE CREATOR LOGIC (CORE WORKFLOW)
   // ----------------------------------------------------
   async initNewInvoice(baseData = null) {
-    let invNumber = 'INV-0001';
+    let invNumber = 'EI/26-27/001';
     try {
       const numRes = await API.getNextInvoiceNumber();
       if (numRes && numRes.invoice_number) {
@@ -967,17 +967,10 @@ const App = {
     const rawGstVal = (gstValInput && gstValInput.value !== '') ? gstValInput.value : '';
     const totalGstType = document.getElementById('invTotalGstType')?.value || 'percent';
 
-    // 2. Total Tax Input
-    const taxValInput = document.getElementById('invTotalTaxVal');
-    const rawTaxVal = (taxValInput && taxValInput.value !== '') ? taxValInput.value : '';
-    const totalTaxType = document.getElementById('invTotalTaxType')?.value || 'percent';
-
     const totals = InvoiceCalc.calculateInvoice(inv.items, {
       tax_type: inv.tax_type,
       total_gst_val: rawGstVal,
       total_gst_type: totalGstType,
-      total_tax_val: rawTaxVal,
-      total_tax_type: totalTaxType,
       invoice_discount_type: inv.invoice_discount_type,
       invoice_discount_val: inv.invoice_discount_val,
       additional_charges: inv.additional_charges,
@@ -990,9 +983,9 @@ const App = {
     inv.total_gst_val = rawGstVal;
     inv.total_gst_type = totalGstType;
     inv.gst_amount = totals.gst_amount;
-    inv.total_tax_val = rawTaxVal;
-    inv.total_tax_type = totalTaxType;
-    inv.tax_amount = totals.tax_amount;
+    inv.total_tax_val = '';
+    inv.total_tax_type = 'percent';
+    inv.tax_amount = 0;
     inv.subtotal = totals.subtotal;
     inv.total_discount = totals.total_discount;
     inv.taxable_subtotal = totals.taxable_subtotal;
@@ -1010,10 +1003,6 @@ const App = {
       const gstLabel = (rawGstVal !== '' && parseFloat(rawGstVal) > 0)
         ? (totalGstType === 'percent' ? `Total GST (${rawGstVal}%)` : 'Total GST (Fixed)')
         : 'Total GST';
-
-      const taxLabel = (rawTaxVal !== '' && parseFloat(rawTaxVal) > 0)
-        ? (totalTaxType === 'percent' ? `Total Tax (${rawTaxVal}%)` : 'Total Tax (Fixed)')
-        : 'Total Tax';
 
       summaryCard.innerHTML = `
         <div class="summary-row">
@@ -1036,12 +1025,6 @@ const App = {
         <div class="summary-row" style="font-weight: 700; color: #1e40af;">
           <span>⚡ ${gstLabel}</span>
           <span class="val">₹${totals.gst_amount.toFixed(2)}</span>
-        </div>
-
-        <!-- 2. Total Tax Line -->
-        <div class="summary-row" style="font-weight: 700; color: #166534;">
-          <span>💰 ${taxLabel}</span>
-          <span class="val">₹${totals.tax_amount.toFixed(2)}</span>
         </div>
 
         ${totals.shipping_charges > 0 ? `
@@ -1355,11 +1338,9 @@ const App = {
     const cust = inv.customer_data || {};
     const items = inv.items || [];
     const totals = InvoiceCalc.calculateInvoice(items, {
-      tax_type: 'intra',
+      tax_type: inv.tax_type || 'intra',
       total_gst_val: inv.total_gst_val !== undefined ? inv.total_gst_val : '',
       total_gst_type: inv.total_gst_type || 'percent',
-      total_tax_val: inv.total_tax_val !== undefined ? inv.total_tax_val : '',
-      total_tax_type: inv.total_tax_type || 'percent',
       invoice_discount_type: inv.discount_type || inv.invoice_discount_type || 'percent',
       invoice_discount_val: inv.discount_val || inv.invoice_discount_val || 0,
       additional_charges: inv.additional_charges || 0,
@@ -1487,7 +1468,7 @@ const App = {
         <div class="p-totals-grid">
           <!-- Left: Tax Breakdown & Words -->
           <div>
-            <div style="font-weight: 700; font-size: 8pt; color: #1e3a8a; text-transform: uppercase;">GST & Tax Summary</div>
+            <div style="font-weight: 700; font-size: 8pt; color: #1e3a8a; text-transform: uppercase;">GST Summary</div>
             <table class="p-tax-breakdown-table">
               <thead>
                 <tr>
@@ -1501,11 +1482,6 @@ const App = {
                   <td>Total GST ${inv.total_gst_val ? '(' + inv.total_gst_val + (inv.total_gst_type === 'fixed' ? '₹' : '%') + ')' : ''}</td>
                   <td>₹${totals.taxable_subtotal.toFixed(2)}</td>
                   <td>₹${totals.gst_amount.toFixed(2)}</td>
-                </tr>
-                <tr>
-                  <td>Total Tax ${inv.total_tax_val ? '(' + inv.total_tax_val + (inv.total_tax_type === 'fixed' ? '₹' : '%') + ')' : ''}</td>
-                  <td>₹${totals.taxable_subtotal.toFixed(2)}</td>
-                  <td>₹${totals.tax_amount.toFixed(2)}</td>
                 </tr>
               </tbody>
             </table>
@@ -1543,10 +1519,6 @@ const App = {
               <tr>
                 <td style="font-weight: 700; color: #1e40af;">Total GST ${inv.total_gst_val ? '(' + inv.total_gst_val + (inv.total_gst_type === 'fixed' ? '₹' : '%') + ')' : ''}:</td>
                 <td class="tar font-mono" style="font-weight: 700; color: #1e40af;">₹${totals.gst_amount.toFixed(2)}</td>
-              </tr>
-              <tr>
-                <td style="font-weight: 700; color: #166534;">Total Tax ${inv.total_tax_val ? '(' + inv.total_tax_val + (inv.total_tax_type === 'fixed' ? '₹' : '%') + ')' : ''}:</td>
-                <td class="tar font-mono" style="font-weight: 700; color: #166534;">₹${totals.tax_amount.toFixed(2)}</td>
               </tr>
               ${totals.shipping_charges > 0 ? `
                 <tr>
@@ -2265,7 +2237,7 @@ const App = {
     document.getElementById('setCompanyEmail').value = s.company_email || '';
     document.getElementById('setCompanyGSTIN').value = s.company_gstin || '';
     document.getElementById('setCompanyState').value = s.company_state || '';
-    document.getElementById('setInvoicePrefix').value = s.invoice_prefix || 'INV-';
+    document.getElementById('setInvoicePrefix').value = s.invoice_prefix || 'EI/26-27/';
     document.getElementById('setBankDetails').value = s.bank_details || '';
     document.getElementById('setDefaultNotes').value = s.default_notes || '';
     document.getElementById('setDefaultTerms').value = s.default_terms || '';

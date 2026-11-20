@@ -135,7 +135,7 @@ function initDatabase() {
     ['company_email', 'billing@eurekainternational.com'],
     ['company_gstin', '37AAAAA0000A1Z5'],
     ['company_state', 'Andhra Pradesh'],
-    ['invoice_prefix', 'INV-'],
+    ['invoice_prefix', 'EI/26-27/'],
     ['next_invoice_seq', '1'],
     ['default_tax_rate', '18'],
     ['enable_stock_tracking', 'true'],
@@ -147,6 +147,12 @@ function initDatabase() {
   const insertSetting = db.prepare(`INSERT OR IGNORE INTO settings (key, value) VALUES (?, ?)`);
   for (const [key, value] of defaultSettings) {
     insertSetting.run(key, value);
+  }
+
+  // Ensure invoice prefix is set to EI/26-27/ if using legacy prefixes
+  const currPrefix = db.prepare("SELECT value FROM settings WHERE key = 'invoice_prefix'").get();
+  if (!currPrefix || currPrefix.value === 'INV-' || currPrefix.value === 'EUREKA/2026-27/') {
+    db.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('invoice_prefix', 'EI/26-27/')").run();
   }
 
   // Preload Products if table is empty
@@ -631,14 +637,14 @@ app.get('/api/invoices/next-number', (req, res) => {
   try {
     const prefixRow = db.prepare("SELECT value FROM settings WHERE key = 'invoice_prefix'").get();
     const seqRow = db.prepare("SELECT value FROM settings WHERE key = 'next_invoice_seq'").get();
-    const prefix = prefixRow ? prefixRow.value : 'INV-';
+    const prefix = prefixRow && prefixRow.value ? prefixRow.value : 'EI/26-27/';
     let seq = seqRow ? parseInt(seqRow.value, 10) : 1;
     if (isNaN(seq) || seq < 1) seq = 1;
 
-    let candidate = `${prefix}${String(seq).padStart(4, '0')}`;
+    let candidate = `${prefix}${String(seq).padStart(3, '0')}`;
     while (db.prepare('SELECT id FROM invoices WHERE invoice_number = ?').get(candidate)) {
       seq += 1;
-      candidate = `${prefix}${String(seq).padStart(4, '0')}`;
+      candidate = `${prefix}${String(seq).padStart(3, '0')}`;
     }
 
     res.json({ invoice_number: candidate, next_seq: seq });
@@ -854,11 +860,14 @@ app.post('/api/invoices', (req, res) => {
 
       // Update sequence setting if invoice_number followed standard sequence
       const prefixRow = db.prepare("SELECT value FROM settings WHERE key = 'invoice_prefix'").get();
-      const prefix = prefixRow ? prefixRow.value : 'INV-';
+      const prefix = prefixRow && prefixRow.value ? prefixRow.value : 'EI/26-27/';
       if (invoice_number.startsWith(prefix)) {
         const numPart = parseInt(invoice_number.replace(prefix, ''), 10);
         if (!isNaN(numPart)) {
-          db.prepare("UPDATE settings SET value = ? WHERE key = 'next_invoice_seq'").run(String(numPart + 1));
+          const currentSeqRow = db.prepare("SELECT value FROM settings WHERE key = 'next_invoice_seq'").get();
+          const currentSeq = currentSeqRow ? parseInt(currentSeqRow.value, 10) : 1;
+          const newSeq = Math.max(currentSeq, numPart + 1);
+          db.prepare("UPDATE settings SET value = ? WHERE key = 'next_invoice_seq'").run(String(newSeq));
         }
       }
 

@@ -92,14 +92,11 @@ const InvoiceCalc = {
     const totalDiscount = this.round2(totalLineDiscount + invoiceDiscountAmount);
     const taxableSubtotal = this.round2(Math.max(0, taxableSubtotalBeforeInvoiceDiscount - invoiceDiscountAmount));
 
-    // Compute Total GST and Total Tax separately
+    // Compute Total GST (GST is the only applicable tax section)
     const {
       total_gst_val,
       total_gst_type = 'percent', // 'percent' or 'fixed'
-      total_tax_val,
-      total_tax_type = 'percent', // 'percent' or 'fixed'
-      override_gst_rate,
-      manual_gst_amount
+      override_gst_rate
     } = options;
 
     let gstAmount = 0;
@@ -117,22 +114,8 @@ const InvoiceCalc = {
       }
     }
 
-    let taxAmount = 0;
-    const rawTax = (total_tax_val !== undefined && total_tax_val !== null) 
-      ? total_tax_val 
-      : (manual_gst_amount !== undefined ? manual_gst_amount : '');
-    const cleanTaxStr = (rawTax !== '' && rawTax !== null) ? String(rawTax).replace(/[^0-9.]/g, '') : '';
-
-    if (cleanTaxStr !== '' && !isNaN(parseFloat(cleanTaxStr))) {
-      const parsedTax = Math.max(0, parseFloat(cleanTaxStr));
-      if (total_tax_type === 'fixed') {
-        taxAmount = this.round2(parsedTax);
-      } else {
-        taxAmount = this.round2(taxableSubtotal * (parsedTax / 100));
-      }
-    }
-
-    const totalTax = this.round2(gstAmount + taxAmount);
+    // Total tax is strictly the GST amount (separate Total Tax removed)
+    const totalTax = gstAmount;
 
     let cgstAmount = 0;
     let sgstAmount = 0;
@@ -145,15 +128,7 @@ const InvoiceCalc = {
         taxable: taxableSubtotal,
         totalTax: gstAmount
       };
-    }
-    if (taxAmount > 0) {
-      taxBreakdown['tax'] = {
-        rate: total_tax_type === 'percent' ? `${rawTax}% Tax` : 'Fixed Tax',
-        taxable: taxableSubtotal,
-        totalTax: taxAmount
-      };
-    }
-    if (totalTax === 0) {
+    } else {
       taxBreakdown['0'] = {
         rate: '0%',
         taxable: taxableSubtotal,
@@ -196,11 +171,11 @@ const InvoiceCalc = {
       taxable_subtotal: taxableSubtotal,
       tax_type,
       gst_amount: gstAmount,
-      tax_amount: taxAmount,
+      tax_amount: 0,
       total_gst_val: rawGst,
       total_gst_type,
-      total_tax_val: rawTax,
-      total_tax_type,
+      total_tax_val: '',
+      total_tax_type: 'percent',
       cgst_amount: cgstAmount,
       sgst_amount: sgstAmount,
       igst_amount: igstAmount,
